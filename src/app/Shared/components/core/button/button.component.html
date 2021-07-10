@@ -1,0 +1,4 @@
+    <div *ngIf="buttonType === 'show'" ><div class="btn btn-dark btn-lg"><fa-icon [icon]="faEye"></fa-icon> Show</div></div>
+    <div *ngIf="buttonType === 'create'"><div class="btn btn-outline-primary btn-lg"><fa-icon [icon]="faPlus"></fa-icon> Create new</div></div>
+    <div *ngIf="buttonType === 'clone'" ><div class="btn btn btn-outline-primary btn-lg btn-clone"><fa-icon [icon]="faClone"></fa-icon> Clone</div></div>
+    <div *ngIf="buttonType === 'default'" ><div class="btn btn btn-outline-primary btn-lg btn-clone"><fa-icon [icon]="faClone"></fa-icon> {{text}}</div></div>

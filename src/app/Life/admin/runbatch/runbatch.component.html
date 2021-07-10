@@ -1,0 +1,72 @@
+<div *ngIf="operation === 'actions'" class="container-sm mt-5 " id="form-body">
+    <div class="row">
+      <div class="col-md-6 mx-auto my-5 align-middle">
+        <form>
+          <div class="form-group mt-2">
+            <label>Select Bacth Category</label>
+            <select class="form-select form-control-lg control-bg-gray">
+              <option></option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group mt-2">
+            <label>Select Batch</label>
+            <select class="form-select form-control-lg control-bg-gray">
+              <option></option>
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group row my-3">
+            <div class="col-sm-4 d-grid gap-1">
+              <app-button [routerLink]="['show']" [buttonType]="'show'"></app-button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+  </div>
+  
+  <div *ngIf="operation === 'show'" class="container-sm" id="form-body">
+
+    <div class="row centertext title-border pb-4">
+        <div class="col-lg-1 "><b>No</b></div>
+        <div class="col-lg-2"><b>Process Type</b></div>
+        <div class="col-lg-6"><b>Process</b></div>
+        <div class="col-lg-1"><b>Select</b></div>
+        <div class="col-lg-2"><b>Parameter</b></div>
+     </div>
+     <div class="row content mt-4" *ngFor="let line of lines">
+        <div class="col-lg-1">
+            <input  class="form-control control-bg-gray " type="text">
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control control-bg-gray" type="text">
+        </div>
+        <div class="col-lg-6">
+            <input class="form-control control-bg-gray" type="text">
+        </div>
+        <div class="col-lg-1 d-flex flex-row justify-content-center">
+            <input class="form-check-input align-self-center " type="checkbox">
+        </div>
+        <div class="col-lg-2">
+            <input class="form-control control-bg-gray" type="text">
+        </div>
+     </div>
+     <div class="row mt-5">
+         <div class="row d-flex flex-row justify-content-end">
+            <button type="button" class=" col-md-2 btn btn-primary">
+                Run
+            </button>
+         </div>
+     </div>
+
+  </div>

@@ -1,0 +1,74 @@
+<div class="container mt-5">
+    <form [formGroup]="paymentform" (ngSubmit)="onSubmit()">
+        <div class="row">
+            <div class="col-md">
+                <div class="mt-4">
+                    <label class="py-2">Payment Method</label><br>
+                    <select formControlName="paymentMethod" class="inputform">
+                        <option>a</option>
+                        <option>b</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-1"></div>
+            <div class="col-md">
+                <div class="mt-4">
+                    <label class="py-2">Payee Name</label><br>
+                    <input type="text" formControlName="payeeName" class="inputform">
+                </div>
+            </div>
+        </div>
+
+        <div class="row mt-5">
+            <div class="col-md">
+                <h2 class="py-3" style="color: #c8003c;">Existing Accounts for Client XXXXXX</h2>
+            </div>
+        </div>
+
+        <table class="table">
+            <thead>
+                <tr class="table-dark">
+                    <th scope="col">#</th>
+                    <th scope="col">Bank No</th>
+                    <th scope="col">Payee Name</th>
+                    <th scope="col">Account Type</th>
+                    <th scope="col">Account No</th>
+                    <th scope="col">Institution</th>
+                    <th scope="col">Select</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let item of formService.list; let i = index">
+                    <th scope="row">{{1 + i}}</th>
+                    <td>{{item?.bankBranch}}</td>
+                    <td>{{item?.accountName}}</td>
+                    <td>{{item?.bankName}}</td>
+                    <td>{{item?.accountNo}}</td>
+                    <td>{{item?.country}}</td>
+                    <td><button type="button" (click)="selectBankDetails(i)" class="btn slectbtn px-4">Select</button>
+                        <!--  <button type="button"  class="btn slectbtn px-4"  >Selected</button> -->
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="row mt-5">
+            <div class="col-md-12 float-right">
+                <button class="btn-dark px-5 py-2 float-right border-0 my-5" type="button" (click)="showBank()"
+                    style="float: right;">New Account</button>
+            </div>
+
+        </div>
+
+        <div class="d-flex justify-content-between mt-5">
+            <div class="d-flex">
+                <button type="button" (click)="changeTab('directors')" class="border-0 prev ml-3"><i
+                        class="fas fa-arrow-left"></i></button>
+                <span class="mx-3 my-auto">Prev</span>
+            </div>
+            <div class="d-flex">
+                <button type="submit" class="border-0 next ml-3 bg-primary px-3 py-2">Submit</button>
+            </div>
+        </div>
+    </form>
+</div>

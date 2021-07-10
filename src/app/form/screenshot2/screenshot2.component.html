@@ -1,0 +1,122 @@
+<div class="container mt-5">
+    <form [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+    <div class="row" >
+       
+        <div class="col-md-4" formArrayName="contactDetails" *ngFor= "let data of allContact.controls; let i = index">
+            <ng-container [formGroupName]="i">
+                <div class="d-flex justify-content-between">
+                    <div class="d-flex"><h2 class="py-4 ">Contact Info {{1+i}}</h2></div>
+                    <div class="d-flex"><div class="d-flex"><i class="fas fa-trash my-auto" (click)="onDeleteContact(i)"></i></div></div>
+                </div>
+                
+                
+                <hr style="width: 65%; height: 2px;">
+            
+            <div class="mt-4 " >
+                
+                <label>Client No</label><br>
+                <div class="d-flex">
+                <input type="text" style="width: 40%;" formControlName="clientNo" class="inputform">
+                <button class="py-auto btn-dark mx-1 px-4 border-0 ">Find</button>
+                <button class="py-auto createbtn px-4 ">Create New</button>
+            </div>
+            </div>
+            <div class="mt-4">
+                <label>Full Name</label><br>
+                <input type="text" formControlName="name" class="inputform" >
+            </div>
+            <div class="mt-4">
+                <label>Relationship</label><br>
+                <input type="text" formControlName="relationship" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Phone number</label><br>
+                <input type="text" formControlName="phoneNo" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Email</label><br>
+                <input type="text" formControlName="email" class="inputform">
+            </div>
+            
+        </ng-container>
+        
+        </div>
+    
+       <!--  <div class="col-md-4">
+            <h2 class="py-4 ">Contact Info 2</h2>
+                
+                <hr style="width: 65%; height: 2px;">
+            <div class="mt-4">
+                <label>Client No</label><br>
+                <div class="d-flex">
+                    <input type="text" style="width: 40%;" formControlName="clientNo2" class="inputform">
+                    <button class="py-auto btn-dark mx-1 px-4 border-0 ">Find</button>
+                    <button class="py-auto createbtn px-4 ">Create New</button>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label>Full Name</label><br>
+                <input type="text" formControlName="name2" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Relationship</label><br>
+                <input type="text" formControlName="relationship2" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Phone number</label><br>
+                <input type="text" formControlName="phoneNo2" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Email</label><br>
+                <input type="text" formControlName="email2" class="inputform">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <h2 class="py-4 ">Contact Info {{3+i}}</h2>
+                
+                <hr style="width: 65%; height: 2px;">
+            <div class="mt-4">
+                <label>Client No</label><br>
+                <div class="d-flex">
+                    <input type="text" style="width: 40%;" formControlName="clientNo3" class="inputform">
+                    <button class=" btn-dark mx-1 px-4 py-auto border-0 ">Find</button>
+                    <button class=" createbtn px-4 py-auto ">Create New</button>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label>Full Name</label><br>
+                <input type="text" formControlName="name3" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Relationship</label><br>
+                <input type="text" formControlName="relationship3" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Phone number</label><br>
+                <input type="text" formControlName="phoneNo3" class="inputform">
+            </div>
+            <div class="mt-4">
+                <label>Email</label><br>
+                <input type="text" formControlName="email3" class="inputform">
+            </div>
+        </div> -->
+    </div>
+
+    <div class="row mt-5">
+        <div class="col-md-3"> <button type="button" (click)="onContactInfo()" class="btn addbtn px-5">Add Contact</button>
+        </div>
+        
+    </div>
+    
+    <div class="d-flex justify-content-between mt-5">
+        <div class="d-flex" >
+            <button type="button" (click)="changeTab('companyInfo')"  class="border-0 prev ml-3"><i class="fas fa-arrow-left"></i></button>
+            <span class="mx-3 my-auto">Prev</span>
+        </div>
+        <div class="d-flex">
+            <span class="mx-3 my-auto">Next</span>
+            <button type="submit" (click)="changeTab('directors')"  class="border-0 next ml-3"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+</form>
+</div>
