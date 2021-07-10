@@ -22,6 +22,7 @@ export class Screenshot3Component implements OnInit {
     this.onContactInfo()
     this.onContactInfo()
   }
+  get validation() { return this.directorsForm?.controls }
   onContactInfo(){
     this.directorsDetails = this.directorsForm.get('directorsDetails') as FormArray;
     this.directorsDetails.push(this.createContactData());
@@ -29,11 +30,11 @@ export class Screenshot3Component implements OnInit {
   }
   createContactData(): FormGroup {
     return this.fb.group({
-      clientNo: '',
-      name: '',
-      relationship: '',
-      phoneNo: '',
-      email: ''
+     /*  clientNo: ['', [Validators.required]], */
+      name: ['', [Validators.required]],
+      relationship: ['', [Validators.required]],
+      phoneNo: ['', [Validators.required]],
+      email: ['', [Validators.required]]
     });
   }
   onDeleteContact(index: any) {

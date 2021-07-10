@@ -77,4 +77,16 @@ this.listData()
   getSectorList(){
     return this.http.get('https://dev-api-evt.herokuapp.com/sector');
   }
+  getSegmentList(){
+    return this.http.get('https://dev-api-evt.herokuapp.com/Segment');
+  }
+  getBanknameList(){
+    return this.http.get('https://dev-api-evt.herokuapp.com/bankname');
+  }
+  getSortList(){
+    return this.http.get('https://dev-api-evt.herokuapp.com/sortcode');
+  }
+  getProviderList(){
+    return this.http.get('https://dev-api-evt.herokuapp.com/Providers');
+  }
 }

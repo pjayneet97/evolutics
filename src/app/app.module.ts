@@ -40,6 +40,7 @@ import { IdentificationComponent } from './form2/identification/identification.c
 import { EmployinfoComponent } from './form2/employinfo/employinfo.component';
 import { PaymentinfoComponent } from './form2/paymentinfo/paymentinfo.component';
 import { NextofkinComponent } from './form2/nextofkin/nextofkin.component';
+import { FormheaderComponent } from './form2/formheader/formheader.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { NextofkinComponent } from './form2/nextofkin/nextofkin.component';
     EmployinfoComponent,
     PaymentinfoComponent,
     NextofkinComponent,
+    FormheaderComponent,
 
 
   ],

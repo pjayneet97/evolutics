@@ -9,7 +9,7 @@ import { ServiceService } from '../service.service';
 })
 export class Screenshot2Component implements OnInit {
 
-  contactForm:any = FormGroup;
+  contactForm:FormGroup=new FormGroup({});
   contactDetails:any = FormArray;
   constructor(private formService: ServiceService,public fb:FormBuilder) { }
 
@@ -22,18 +22,21 @@ export class Screenshot2Component implements OnInit {
     this.onContactInfo()
     this.onContactInfo()
   }
+  get validation() { 
+    console.log("validator",this.contactForm?.controls)
+    return this.contactForm?.controls }
+
   onContactInfo(){
     this.contactDetails = this.contactForm.get('contactDetails') as FormArray;
     this.contactDetails.push(this.createContactData());
-   /*  console.log("contract push",this.contactDetails) */
   }
   createContactData(): FormGroup {
     return this.fb.group({
-      clientNo: '',
-      name: '',
-      relationship: '',
-      phoneNo: '',
-      email: ''
+      /* clientNo: ['', [Validators.required]], */
+      name: ['', [Validators.required]],
+      relationship: ['', [Validators.required]],
+      phoneNo: ['', [Validators.required]],
+      email: ['', [Validators.required]]
     });
   }
   onDeleteContact(index: any) {

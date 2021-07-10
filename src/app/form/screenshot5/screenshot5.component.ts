@@ -11,6 +11,12 @@ export class Screenshot5Component implements OnInit {
 
   newPaymentForm:any = FormGroup;
   countryList:any = []
+  banknameList:any = []
+  sortCodeList:any = []
+  providerList:any = []
+  bankModel:any = true;
+  mobileModel:any = false;
+  
   constructor(private formService: ServiceService) { }
 
   ngOnInit(): void {
@@ -20,11 +26,16 @@ export class Screenshot5Component implements OnInit {
       bankName: new FormControl(null,Validators.required),
       accountNo: new FormControl(null,Validators.required),
       bankBranch: new FormControl(null,Validators.required),
-      accountName: new FormControl(null,Validators.required)
+      accountName: new FormControl(null,Validators.required),
+      provider: new FormControl(null,Validators.required)
       
     })
     this.setCountryList()
+    this.setBanknameList()
+    this.setSortcodeList()
+    this.setProviderList()
   }
+  get validation() { return this.newPaymentForm?.controls }
   onSubmit(){
     console.log(this.newPaymentForm)
     this.formService.newPaymentInfo(this.newPaymentForm.value);
@@ -39,5 +50,56 @@ export class Screenshot5Component implements OnInit {
         this.countryList = res;
         console.log("countrylist",res)
       })
+    }
+
+    setBanknameList(){
+     /*  this.formService.getBanknameList().subscribe( res => {
+        this.banknameList = res;
+        console.log("banknameList",res)
+      }) */
+
+      let selectedBank = this.newPaymentForm.get("country")?.value
+  console.log("selected Bank",selectedBank)
+  this.formService.getBanknameList().subscribe( res => {
+    this.banknameList = res;
+    this.banknameList=this.banknameList.filter((element:any)=>{
+      return element.COUNTRY==selectedBank
+    })
+    this.newPaymentForm.patchValue({bankName:null })
+    console.log("bankName",this.banknameList)
+  })
+    }
+
+    setSortcodeList(){
+      let selectedSort = this.newPaymentForm.get("bankName")?.value
+      console.log("selected Bank",selectedSort)
+      this.formService.getSortList().subscribe( res => {
+        this.sortCodeList = res;
+        this.sortCodeList=this.sortCodeList.filter((element:any)=>{
+          return element.COUNTRY==selectedSort
+        })
+        /* this.newPaymentForm.patchValue({bankName:null }) */
+        console.log("selectedSort",this.sortCodeList)
+      })
+    }
+
+setProviderList(){
+  this.formService.getProviderList().subscribe( res => {
+    this.providerList = res;
+    console.log("providerList",res)
+  })
+}
+    upload(event:any){
+      let file = event.target.files[0];
+      console.log("imagefile",file)
+      console.log("imagepath",file.name)
+    }
+    showBankModel(){
+    this.bankModel = true;
+    this.mobileModel = false;
+    }
+    showMobileModel(){
+      this.mobileModel = true;
+      this.bankModel = false;
     }
 }

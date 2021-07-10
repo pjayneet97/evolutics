@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Form2Service } from '../form2.service';
 
 @Component({
   selector: 'app-personalinfo',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PersonalinfoComponent implements OnInit {
 
-  constructor() { }
+  constructor(public form2service: Form2Service) { }
 
   ngOnInit(): void {
   }
 
+  changeTab(tab:any){
+    console.log("tab")
+    this.form2service.tabChange(tab)
+    }
 }

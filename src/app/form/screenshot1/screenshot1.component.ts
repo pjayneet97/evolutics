@@ -15,13 +15,15 @@ export class Screenshot1Component implements OnInit {
   stateList:any = []
   townList:any = []
   sectorList:any = []
+  segmentList:any = []
+  emailRegEx = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   constructor(private formService: ServiceService) { }
 
   ngOnInit(): void {
     this.companyForm = new FormGroup({
       name: new FormControl(null,Validators.required),
       country: new FormControl(null,Validators.required),
-      email: new FormControl(null,Validators.required),
+      email: new FormControl(null,[Validators.required, Validators.pattern(this.emailRegEx)]),
       phoneNo: new FormControl(null,Validators.required),
       address: new FormControl(null,Validators.required),
       addressCountry: new FormControl(null,Validators.required),
@@ -30,7 +32,10 @@ export class Screenshot1Component implements OnInit {
       addressTown: new FormControl(null,Validators.required),
       companyRedg: new FormControl(null,Validators.required),
       seagment: new FormControl(null,Validators.required),
-      website: new FormControl(null,Validators.required),
+      website: new FormControl(null,[
+        Validators.required,
+        Validators.pattern("/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/")
+      ]),
       sector: new FormControl(null,Validators.required)
       
     })
@@ -39,7 +44,9 @@ export class Screenshot1Component implements OnInit {
     this.setStateList()
     this.setTownList()
     this.setSectorList()
+    this.setSegmentList()
   }
+  get validation() { return this.companyForm?.controls }
 
   onSubmit(){
     console.log(this.companyForm)
@@ -98,6 +105,12 @@ setSectorList(){
   this.formService.getSectorList().subscribe( res => {
     this.sectorList = res;
     console.log("sectorList",res)
+  })
+}
+setSegmentList(){
+  this.formService.getSegmentList().subscribe( res => {
+    this.segmentList = res;
+    console.log("segmentlist",res)
   })
 }
 }

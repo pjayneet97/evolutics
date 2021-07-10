@@ -1,1 +1,123 @@
-<p>personalinfo works!</p>
+
+<div class="container mt-5">
+    <form >
+    <div class="row">
+        <div class="col-md" >
+            <div class="d-block">
+                <div class="mt-4">
+            <label>Surame</label><br>
+            <input type="text"  class="inputform"></div>
+        <div class="mt-4">
+            <label>First Name</label><br>
+            <input type="text" class="inputform">
+        </div>
+        <div class="mt-4">
+            <label>Email</label><br>
+            <input type="text"  class="inputform">
+        </div>
+        <div class="mt-4">
+            <label>Phone Number</label><br>
+            <input type="text"  class="inputform"></div>
+            <div class="mt-4">
+            <label>Address</label><br>
+            <input type="text"  class="inputform"></div>
+            <div class="mt-4">
+            <label>Address Country</label><br>
+            <select class="inputform" >
+                <!-- <option [value]="null">Select Country</option>
+                <option [value]="item.ID" *ngFor="let item of countryList">{{item.DESCRIPTION}}</option> -->
+            </select>
+        </div>
+        <div class="mt-4">
+            <label>Address Region</label><br>
+            <select  class="inputform">
+                <!-- <option [value]="null">Select Region</option>
+                <option [value]="item.ID" *ngFor="let item of regionList">{{item.DESCRIPTION}}</option> -->
+            </select>
+        </div>
+        <div class="mt-4">
+            <label>Address State</label><br>
+            <select  class="inputform">
+                <!-- <option [value]="null">Select State</option>
+                <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
+            </select>
+        </div>
+        <div class="mt-4">
+            <label>Address Town</label><br>
+            <select class="inputform">
+                <!-- <option [value]="null">Select Town</option>
+                <option [value]="item.ID" *ngFor="let item of townList">{{item.DESCRIPTION}}</option> -->
+            </select>
+        </div>
+        </div>
+        </div>
+        <div class="col-md-1"></div>
+        <div class="col-md position-relative">
+            <div class="mt-4">
+            <label>Middle Name</label><br>
+            <input type="text"  class="inputform">
+        </div>
+        <div class="mt-4">
+            <label>Date of birth</label><br>
+            <input type="date"  class="inputform">
+        </div>
+        <div class="mt-4">
+            <label>Alternative Email</label><br>
+            <input type="text"  class="inputform">
+        </div>
+        <div class="mt-4">
+            <label>Marital Status</label><br>
+            <div class="d-flex">
+                <button class="py-auto createbtn px-4 ">Single</button>
+                <button class="py-auto createbtn px-4 ">Married</button>
+                <button class="py-auto createbtn px-4 ">Divorced</button>
+                <button class="py-auto createbtn px-4 ">Engaged</button>
+            </div>
+        </div>
+        <div class="mt-4">
+            <label>Gender</label><br>
+            <div class="d-flex">
+                <input type="text" style="width: 40%;"  class="inputform">
+                <button class="py-auto createbtn px-4 ">Male</button>
+                <button class="py-auto createbtn px-4 ">Female</button>
+            </div>
+        </div>
+        <div class="mt-4">
+            <label>Client Type</label><br>
+            <div class="d-flex">
+                <select  class="inputform">
+                    <!-- <option [value]="null">Select State</option>
+                    <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
+                </select>
+                <button class="py-auto createbtn px-4 ">Create New</button>
+            </div>
+        </div>
+        <div class="mt-4">
+            <label>Nationality</label><br>
+            <select  class="inputform">
+                <!-- <option [value]="null">Select State</option>
+                <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
+            </select>
+        </div>
+        <div class="mt-4">
+            <label>Address Golocation</label><br>
+            <select class="inputform">
+                <!-- <option [value]="null">Select State</option>
+                <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
+            </select>
+        </div>
+        <!-- <div class="nextbtn">
+            <span class="mx-3">Next</span>
+            <button type="submit"  class="btn next ml-3"><i class="fas fa-arrow-right"></i></button>
+        </div> -->
+        </div>
+    </div>
+    <div class=" mt-5">
+        <div  style="float: right;">
+            <span class="mx-3 my-auto">Next</span>
+          <button type="submit" (click)="changeTab('Identification')"  class="border-0 next ml-3"><i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+</form>
+</div>

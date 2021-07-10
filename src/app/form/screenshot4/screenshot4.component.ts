@@ -18,8 +18,8 @@ export class Screenshot4Component implements OnInit {
 
   ngOnInit(): void {
     this.paymentform = new FormGroup({
-      paymentMethod: new FormControl(null,Validators.required),
-      payeeName: new FormControl(null,Validators.required)
+     /*  paymentMethod: new FormControl(null,Validators.required),
+      payeeName: new FormControl(null,Validators.required) */
       
     })
     /* let data = this.formService.newPaymentData 
@@ -27,6 +27,7 @@ export class Screenshot4Component implements OnInit {
     console.log("banklist",this.list) */
     
   }
+  get validation() { return this.paymentform?.controls }
   onSubmit(){
     console.log(this.paymentform)
     if(this.pList){
@@ -46,6 +47,15 @@ export class Screenshot4Component implements OnInit {
       this.formService.showBankDetail()
     }
     selectBankDetails(i:any){
-  this.pList = this.formService.list[i]
+  /* this.pList = this.formService.list[i] */
+  this.pList = i
+  console.log(i)
+ /*  this.paymentform = new FormGroup({
+    paymentMethod: new FormControl(null,Validators.required),
+    payeeName: new FormControl(i.accountName,Validators.required)
+    
+  }) */
+ /*  this.paymentform.value.payeeName = i.accountName
+  console.log(this.paymentform.value) */
     }
 }

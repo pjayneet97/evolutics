@@ -36,6 +36,7 @@ import { Screenshot3Component } from './form/screenshot3/screenshot3.component';
 import { Screenshot4Component } from './form/screenshot4/screenshot4.component';
 import { Screenshot5Component } from './form/screenshot5/screenshot5.component';
 import { CommonComponent } from './form/common/common.component';
+import { AllformsComponent } from './form2/allforms/allforms.component';
 
 const routes: Routes = [
   {path: 'screenshot1', component: Screenshot1Component},
@@ -44,6 +45,7 @@ const routes: Routes = [
   {path: 'screenshot4', component: Screenshot4Component},
   {path: 'screenshot5', component: Screenshot5Component},
   {path: 'common', component: CommonComponent},
+  {path: 'allform', component: AllformsComponent},
   {path: '', redirectTo: '/life', pathMatch: 'full', data: {color: 'bg-primary'}},
   {
     path: 'life', data: {color: 'bg-primary'}, canActivate: [AuthGuardService], children: [
