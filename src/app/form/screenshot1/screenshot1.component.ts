@@ -29,12 +29,12 @@ export class Screenshot1Component implements OnInit {
       addressCountry: new FormControl(null,Validators.required),
       addressRegion: new FormControl(null,Validators.required),
       addressState: new FormControl(null,Validators.required),
-      addressTown: new FormControl(null,Validators.required),
+      addressTown: new FormControl(null),
       companyRedg: new FormControl(null,Validators.required),
       seagment: new FormControl(null,Validators.required),
       website: new FormControl(null,[
         Validators.required,
-        Validators.pattern("/^(http[s]?:\/\/){0,1}(www\.){0,1}[a-zA-Z0-9\.\-]+\.[a-zA-Z]{2,5}[\.]{0,1}/")
+        Validators.pattern("^((www.))([a-zA-z0-9\-_])(.[a-zA-z])")
       ]),
       sector: new FormControl(null,Validators.required)
       
@@ -45,6 +45,8 @@ export class Screenshot1Component implements OnInit {
     this.setTownList()
     this.setSectorList()
     this.setSegmentList()
+
+    
   }
   get validation() { return this.companyForm?.controls }
 

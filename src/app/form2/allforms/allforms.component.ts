@@ -8,11 +8,11 @@ import { Form2Service } from '../form2.service';
 })
 export class AllformsComponent implements OnInit {
 
-  constructor(public form2service: Form2Service) { }
+  constructor(public allFormService: Form2Service) { }
 
   ngOnInit(): void {
   }
   changeTab(tab:any){
-  this.form2service.tabChange(tab)
+  this.allFormService.tabChange(tab)
   }
 }

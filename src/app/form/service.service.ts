@@ -89,4 +89,8 @@ this.listData()
   getProviderList(){
     return this.http.get('https://dev-api-evt.herokuapp.com/Providers');
   }
+  
+  getRelationList(){
+    return this.http.get('https://dev-api-evt.herokuapp.com/corporateContactRel');
+  }
 }

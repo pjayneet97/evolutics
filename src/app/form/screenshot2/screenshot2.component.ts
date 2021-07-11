@@ -11,6 +11,7 @@ export class Screenshot2Component implements OnInit {
 
   contactForm:FormGroup=new FormGroup({});
   contactDetails:any = FormArray;
+  relationList:any = []
   constructor(private formService: ServiceService,public fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class Screenshot2Component implements OnInit {
     this.onContactInfo()
     this.onContactInfo()
     this.onContactInfo()
+    this.setRelationList()
   }
   get validation() { 
     console.log("validator",this.contactForm?.controls)
@@ -54,5 +56,12 @@ export class Screenshot2Component implements OnInit {
   changeTab(tab:any){
     console.log("tab")
     this.formService.tabChange(tab)
+    }
+
+    setRelationList(){
+      this.formService.getRelationList().subscribe( res => {
+        this.relationList = res;
+        console.log("relationList",res)
+      })
     }
 }

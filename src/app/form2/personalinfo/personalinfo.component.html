@@ -1,115 +1,167 @@
 
 <div class="container mt-5">
-    <form >
+    <form [formGroup]="personalFormData" (ngSubmit)="onSubmit()">
     <div class="row">
         <div class="col-md" >
             <div class="d-block">
                 <div class="mt-4">
             <label>Surame</label><br>
-            <input type="text"  class="inputform"></div>
+            <input type="text"  formControlName="surname" class="inputform" required>
+            <div *ngIf="validation.surname.errors && (validation.surname.dirty || validation.surname.touched)">
+                <div class="text-danger" *ngIf="validation.surname?.errors?.required">Field is invalid!
+                </div>
+            </div>
+        </div>
         <div class="mt-4">
             <label>First Name</label><br>
-            <input type="text" class="inputform">
+            <input type="text" formControlName="firstName" class="inputform" required>
+            <div *ngIf="validation.firstName.errors && (validation.firstName.dirty || validation.firstName.touched)">
+                <div class="text-danger" *ngIf="validation.firstName?.errors?.required">Field is invalid!
+                </div>
+            </div>
         </div>
         <div class="mt-4">
             <label>Email</label><br>
-            <input type="text"  class="inputform">
+            <input type="email" formControlName="email" class="inputform" required>
+            <div *ngIf="validation.email.errors && (validation.email.dirty || validation.email.touched)">
+                <div class="text-danger" *ngIf="validation.email?.errors?.required">Field is invalid!
+                </div>
+            </div>
         </div>
         <div class="mt-4">
             <label>Phone Number</label><br>
-            <input type="text"  class="inputform"></div>
+            <input type="number" formControlName="phoneNumber" class="inputform" required>
+            <div *ngIf="validation.phoneNumber.errors && (validation.phoneNumber.dirty || validation.phoneNumber.touched)">
+                <div class="text-danger" *ngIf="validation.phoneNumber?.errors?.required">Field is invalid!
+                </div>
+            </div>
+        </div>
+
+
             <div class="mt-4">
-            <label>Address</label><br>
-            <input type="text"  class="inputform"></div>
+                <label>Address</label><br>
+                <input type="text" formControlName="address" class="inputform" required>
+                <div *ngIf="validation.address.errors && (validation.address.dirty || validation.address.touched)">
+                    <div class="text-danger" *ngIf="validation.address?.errors?.required">Field is invalid!
+                    </div>
+                </div></div>
+                <div class="mt-4">
+                <label>Address Country</label><br>
+                <select formControlName="addressCountry" (change)="setRegionList()" class="inputform" required>
+                    <option [value]="null">Select Country</option>
+                    <option [value]="item.ID" *ngFor="let item of countryList">{{item.DESCRIPTION}}</option>
+                </select>
+                <div *ngIf="validation.addressCountry.errors && (validation.addressCountry.dirty || validation.addressCountry.touched)">
+                    <div class="text-danger" *ngIf="validation.addressCountry?.errors?.required">Field is invalid!
+                    </div>
+                </div>
+            </div>
             <div class="mt-4">
-            <label>Address Country</label><br>
-            <select class="inputform" >
-                <!-- <option [value]="null">Select Country</option>
-                <option [value]="item.ID" *ngFor="let item of countryList">{{item.DESCRIPTION}}</option> -->
-            </select>
-        </div>
-        <div class="mt-4">
-            <label>Address Region</label><br>
-            <select  class="inputform">
-                <!-- <option [value]="null">Select Region</option>
-                <option [value]="item.ID" *ngFor="let item of regionList">{{item.DESCRIPTION}}</option> -->
-            </select>
-        </div>
-        <div class="mt-4">
-            <label>Address State</label><br>
-            <select  class="inputform">
-                <!-- <option [value]="null">Select State</option>
-                <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
-            </select>
-        </div>
-        <div class="mt-4">
-            <label>Address Town</label><br>
-            <select class="inputform">
-                <!-- <option [value]="null">Select Town</option>
-                <option [value]="item.ID" *ngFor="let item of townList">{{item.DESCRIPTION}}</option> -->
-            </select>
-        </div>
+                <label>Address Region</label><br>
+                <select formControlName="addressRegion" (change)="setStateList()" class="inputform" required>
+                    <option [value]="null">Select Region</option>
+                    <option [value]="item.ID" *ngFor="let item of regionList">{{item.DESCRIPTION}}</option>
+                </select>
+                <div *ngIf="validation.addressRegion.errors && (validation.addressRegion.dirty || validation.addressRegion.touched)">
+                    <div class="text-danger" *ngIf="validation.addressRegion?.errors?.required">Field is invalid!
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label>Address State</label><br>
+                <select formControlName="addressState" (change)="setTownList()" class="inputform" required>
+                    <option [value]="null">Select State</option>
+                    <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option>
+                </select>
+                <div *ngIf="validation.addressState.errors && (validation.addressState.dirty || validation.addressState.touched)">
+                    <div class="text-danger" *ngIf="validation.addressState?.errors?.required">Field is invalid!
+                    </div>
+                </div>
+            </div>
+            <div class="mt-4">
+                <label>Address Town</label><br>
+                <select formControlName="addressTown" class="inputform" >
+                    <option [value]="null">Select Town</option>
+                    <option [value]="item.ID" *ngFor="let item of townList">{{item.DESCRIPTION}}</option>
+                </select>
+            </div>
+
+
         </div>
         </div>
         <div class="col-md-1"></div>
         <div class="col-md position-relative">
             <div class="mt-4">
             <label>Middle Name</label><br>
-            <input type="text"  class="inputform">
-        </div>
-        <div class="mt-4">
-            <label>Date of birth</label><br>
-            <input type="date"  class="inputform">
-        </div>
-        <div class="mt-4">
-            <label>Alternative Email</label><br>
-            <input type="text"  class="inputform">
-        </div>
-        <div class="mt-4">
-            <label>Marital Status</label><br>
-            <div class="d-flex">
-                <button class="py-auto createbtn px-4 ">Single</button>
-                <button class="py-auto createbtn px-4 ">Married</button>
-                <button class="py-auto createbtn px-4 ">Divorced</button>
-                <button class="py-auto createbtn px-4 ">Engaged</button>
+            <input type="text"  formControlName="middleName" class="inputform" required>
+            <div *ngIf="validation.middleName.errors && (validation.middleName.dirty || validation.middleName.touched)">
+                <div class="text-danger" *ngIf="validation.middleName?.errors?.required">Field is invalid!
+                </div>
             </div>
         </div>
         <div class="mt-4">
-            <label>Gender</label><br>
+            <label>Date of birth</label><br>
+            <input type="date"  formControlName="dob" class="inputform" required>
+            <div *ngIf="validation.dob.errors && (validation.dob.dirty || validation.dob.touched)">
+                <div class="text-danger" *ngIf="validation.dob?.errors?.required">Field is invalid!
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <label>Alternative Email</label><br>
+            <input type="text"  formControlName="alternateEmail"  class="inputform" required>
+            <div 
+            *ngIf="validation.alternateEmail.errors && (validation.alternateEmail.dirty || validation.alternateEmail.touched)">
+                <div class="text-danger" *ngIf="validation.alternateEmail?.errors?.required">Field is invalid!
+                </div>
+            </div>
+        </div>
+        <div class="mt-4">
+            <label>Alternative Phone Number</label><br>
+            <input type="text"  formControlName="alternatePhoneNo"  class="inputform" required>
+            <div 
+            *ngIf="validation.alternatePhoneNo.errors && (validation.alternatePhoneNo.dirty || validation.alternatePhoneNo.touched)">
+                <div class="text-danger" *ngIf="validation.alternatePhoneNo?.errors?.required">Field is invalid!
+                </div>
+            </div>
+        </div>
+        <div class="mt-4 ">
             <div class="d-flex">
-                <input type="text" style="width: 40%;"  class="inputform">
-                <button class="py-auto createbtn px-4 ">Male</button>
-                <button class="py-auto createbtn px-4 ">Female</button>
+            <label>Marital Status</label><br>
+            
+                <button class="py-auto mx-1 createbtn px-3 " >Single</button>
+                <button class="py-auto mx-2 createbtn px-3 ">Married</button>
+                <button class="py-auto mx-2 createbtn px-3 ">Divorced</button>
+                <button class="py-auto mx-2 createbtn px-3 ">Engaged</button>
+            </div>
+        </div>
+        <div class="mt-4 ">
+            <div class="d-flex">
+            <label>Gender</label><br>
+            
+               <!--  <input type="text" style="width: 40%;"  formControlName="gender" class="inputform" required> -->
+                <button class="py-auto w-100 mx-2 createbtn px-5 ">Male</button>
+                <button class="py-auto w-100 mx-2 createbtn px-5 ">Female</button>
             </div>
         </div>
         <div class="mt-4">
             <label>Client Type</label><br>
             <div class="d-flex">
-                <select  class="inputform">
-                    <!-- <option [value]="null">Select State</option>
-                    <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
+                <select formControlName="clientType" class="inputform" required>
+                    <option [value]="null">Select Client Type</option>
+                    <option value="I">I</option>
+                    <option value="C">C</option>
                 </select>
-                <button class="py-auto createbtn px-4 ">Create New</button>
+                <button class="py-auto createbtn mx-2 px-5 ">Add</button>
             </div>
         </div>
         <div class="mt-4">
             <label>Nationality</label><br>
-            <select  class="inputform">
-                <!-- <option [value]="null">Select State</option>
-                <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
+            <select  formControlName="nationality" class="inputform" required>
+                <option [value]="null">Select Nationality</option>
+                <option [value]="item.ID" *ngFor="let item of nationalityList">{{item.DESCRIPTION}}</option>
             </select>
         </div>
-        <div class="mt-4">
-            <label>Address Golocation</label><br>
-            <select class="inputform">
-                <!-- <option [value]="null">Select State</option>
-                <option [value]="item.ID" *ngFor="let item of stateList">{{item.DESCRIPTION}}</option> -->
-            </select>
-        </div>
-        <!-- <div class="nextbtn">
-            <span class="mx-3">Next</span>
-            <button type="submit"  class="btn next ml-3"><i class="fas fa-arrow-right"></i></button>
-        </div> -->
         </div>
     </div>
     <div class=" mt-5">

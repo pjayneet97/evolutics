@@ -15,6 +15,7 @@ export class Screenshot5Component implements OnInit {
   sortCodeList:any = []
   providerList:any = []
   bankModel:any = true;
+  sortCode:any;
   mobileModel:any = false;
   
   constructor(private formService: ServiceService) { }
@@ -63,9 +64,9 @@ export class Screenshot5Component implements OnInit {
   this.formService.getBanknameList().subscribe( res => {
     this.banknameList = res;
     this.banknameList=this.banknameList.filter((element:any)=>{
-      return element.COUNTRY==selectedBank
+      return element.country==selectedBank
     })
-    this.newPaymentForm.patchValue({bankName:null })
+    this.newPaymentForm.patchValue({bankName:null, sortCode:null })
     console.log("bankName",this.banknameList)
   })
     }
@@ -76,10 +77,12 @@ export class Screenshot5Component implements OnInit {
       this.formService.getSortList().subscribe( res => {
         this.sortCodeList = res;
         this.sortCodeList=this.sortCodeList.filter((element:any)=>{
-          return element.COUNTRY==selectedSort
+          return element.BANK_CODE==selectedSort
         })
         /* this.newPaymentForm.patchValue({bankName:null }) */
         console.log("selectedSort",this.sortCodeList)
+        this.sortCode = this.sortCodeList[0].SORT_CODE
+        console.log("code",this.sortCode)
       })
     }
 

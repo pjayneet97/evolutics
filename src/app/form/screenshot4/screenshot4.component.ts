@@ -9,53 +9,102 @@ import { ServiceService } from '../service.service';
 })
 export class Screenshot4Component implements OnInit {
 
-  paymentform:any = FormGroup;
-  /* list:any = [] */
-  listcheck = false;
-  data:any;
-  pList:any =[]
-  constructor(public formService: ServiceService) { }
+  newPaymentForm:any = FormGroup;
+  countryList:any = []
+  banknameList:any = []
+  sortCodeList:any = []
+  providerList:any = []
+  bankModel:any = true;
+  sortCode:any;
+  mobileModel:any = false;
+  
+  constructor(private formService: ServiceService) { }
 
   ngOnInit(): void {
-    this.paymentform = new FormGroup({
-     /*  paymentMethod: new FormControl(null,Validators.required),
-      payeeName: new FormControl(null,Validators.required) */
+    this.newPaymentForm = new FormGroup({
+      country: new FormControl(null,Validators.required),
+      sortCode: new FormControl(null,Validators.required),
+      bankName: new FormControl(null,Validators.required),
+      accountNo: new FormControl(null,Validators.required),
+      bankBranch: new FormControl(null,Validators.required),
+      accountName: new FormControl(null,Validators.required),
+      provider: new FormControl(null,Validators.required)
       
     })
-    /* let data = this.formService.newPaymentData 
-    this.list.push(data)
-    console.log("banklist",this.list) */
     
+    this.setCountryList()
+    this.setBanknameList()
+    this.setSortcodeList()
+    this.setProviderList()
   }
-  get validation() { return this.paymentform?.controls }
+  get validation() { return this.newPaymentForm?.controls }
   onSubmit(){
-    console.log(this.paymentform)
-    if(this.pList){
-    let data = {...this.paymentform.value, ...this.pList}
-      console.log("append details",data )
-      this.formService.paymentInfo(data);
-    }
-   else{
-     console.log("select bank")
-   }
+    console.log(this.newPaymentForm)
+    this.formService.newPaymentInfo(this.newPaymentForm.value);
+    this.closeBank()
   }
-  changeTab(tab:any){
+  closeBank(){
     console.log("tab")
-    this.formService.tabChange(tab)
+    this.formService.closeBankDetails();
     }
-    showBank(){
-      this.formService.showBankDetail()
+    setCountryList(){
+      this.formService.getCountryList().subscribe( res => {
+        this.countryList = res;
+        console.log("countrylist",res)
+      })
     }
-    selectBankDetails(i:any){
-  /* this.pList = this.formService.list[i] */
-  this.pList = i
-  console.log(i)
- /*  this.paymentform = new FormGroup({
-    paymentMethod: new FormControl(null,Validators.required),
-    payeeName: new FormControl(i.accountName,Validators.required)
-    
-  }) */
- /*  this.paymentform.value.payeeName = i.accountName
-  console.log(this.paymentform.value) */
+
+    setBanknameList(){
+     /*  this.formService.getBanknameList().subscribe( res => {
+        this.banknameList = res;
+        console.log("banknameList",res)
+      }) */
+
+      let selectedBank = this.newPaymentForm.get("country")?.value
+  console.log("selected Bank",selectedBank)
+  this.formService.getBanknameList().subscribe( res => {
+    this.banknameList = res;
+    this.banknameList=this.banknameList.filter((element:any)=>{
+      return element.country==selectedBank
+    })
+    this.newPaymentForm.patchValue({bankName:null, sortCode:null })
+    console.log("bankName",this.banknameList)
+  })
+    }
+
+    setSortcodeList(){
+      let selectedSort = this.newPaymentForm.get("bankName")?.value
+      console.log("selected Bank",selectedSort)
+      this.formService.getSortList().subscribe( res => {
+        this.sortCodeList = res;
+        this.sortCodeList=this.sortCodeList.filter((element:any)=>{
+          return element.BANK_CODE==selectedSort
+        })
+        /* this.newPaymentForm.patchValue({bankName:null }) */
+        console.log("selectedSort",this.sortCodeList)
+        this.sortCode = this.sortCodeList[0].SORT_CODE
+        console.log("code",this.sortCode)
+      })
+    }
+
+setProviderList(){
+  this.formService.getProviderList().subscribe( res => {
+    this.providerList = res;
+    console.log("providerList",res)
+  })
+}
+    upload(event:any){
+      let file = event.target.files[0];
+      console.log("imagefile",file)
+      console.log("imagepath",file.name)
+    }
+    showBankModel(){
+    this.bankModel = true;
+    this.newPaymentForm.reset()
+    }
+    showMobileModel(){
+      this.mobileModel = true;
+      this.bankModel = false;
+      this.newPaymentForm.reset()
     }
 }

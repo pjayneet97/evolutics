@@ -11,6 +11,7 @@ export class Screenshot3Component implements OnInit {
 
   directorsForm:any = FormGroup;
   directorsDetails:any = FormArray;
+  relationList:any = []
   constructor(private formService: ServiceService,public fb:FormBuilder) { }
 
   ngOnInit(): void {
@@ -21,6 +22,7 @@ export class Screenshot3Component implements OnInit {
     this.onContactInfo()
     this.onContactInfo()
     this.onContactInfo()
+    this.setRelationList()
   }
   get validation() { return this.directorsForm?.controls }
   onContactInfo(){
@@ -55,5 +57,11 @@ export class Screenshot3Component implements OnInit {
  changeTab(tab:any){
   console.log("tab")
   this.formService.tabChange(tab)
+  }
+  setRelationList(){
+    this.formService.getRelationList().subscribe( res => {
+      this.relationList = res;
+      console.log("relationList",res)
+    })
   }
 }

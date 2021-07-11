@@ -522,14 +522,14 @@ thead tr {
     height: 30px;
 }
 .prev{
-  background-color: black;
+  background-color: #B22222;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 3px 20px 3px 20px;
   color: white;
 }
 .next{
-  background-color: #c8003c;
+  background-color: #B22222;
   border-top-right-radius: 10px;
   border-bottom-left-radius: 10px;
   padding: 3px 20px 3px 20px;
@@ -538,19 +538,26 @@ thead tr {
 
 .createbtn{
   background-color: white;
-  border: 2px solid #c8003c;
-  color: #c8003c;
+  border: 2px solid #B22222;
+  color: #B22222;
   border-radius: 8px;
   font-size: 13px;
 }
 .addbtn{
 background-color: white;
-  border: 2px solid #c8003c;
-  color: #c8003c;
+  border: 2px solid #B22222;
+  color: #B22222;
   border-radius: 8px;
   padding: 13px;
 }
 .btn-dark{
 border-radius: 8px;
 font-size: 13px;
+background-color: #B22222;
+}
+.primarybtn{
+  background-color: #B22222;
+}
+label{
+    font-weight: bold;
 }

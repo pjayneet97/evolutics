@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Form2Service } from '../form2.service';
+import { Form2Service } from '../../form2.service';
 
 @Component({
-  selector: 'app-paymentinfo',
-  templateUrl: './paymentinfo.component.html',
-  styleUrls: ['./paymentinfo.component.scss']
+  selector: 'app-paymentdetail',
+  templateUrl: './paymentdetail.component.html',
+  styleUrls: ['./paymentdetail.component.scss']
 })
-export class PaymentinfoComponent implements OnInit {
+export class PaymentdetailComponent implements OnInit {
 
   newPaymentForm:any = FormGroup;
   countryList:any = []
@@ -23,11 +23,11 @@ export class PaymentinfoComponent implements OnInit {
   ngOnInit(): void {
     this.newPaymentForm = new FormGroup({
       country: new FormControl(null,Validators.required),
-        sortCode: new FormControl(null,Validators.required),
-        bankName: new FormControl(null,Validators.required),
+      sortCode: new FormControl(null,Validators.required),
+      bankName: new FormControl(null,Validators.required),
+      accountNo: new FormControl(null,Validators.required),
       bankBranch: new FormControl(null,Validators.required),
       accountName: new FormControl(null,Validators.required),
-      accountNo: new FormControl(null,Validators.required),
       provider: new FormControl(null,Validators.required)
       
     })
@@ -39,7 +39,7 @@ export class PaymentinfoComponent implements OnInit {
   get validation() { return this.newPaymentForm?.controls }
   onSubmit(){
     console.log(this.newPaymentForm)
-    this.allFormService.paymentInfo(this.newPaymentForm.value);
+    this.allFormService.nextOfKinInfo(this.newPaymentForm.value);
     this.closeBank()
   }
   closeBank(){
@@ -105,9 +105,5 @@ setProviderList(){
       this.mobileModel = true;
       this.bankModel = false;
     }
-    changeTab(tab:any){
-      console.log("tab")
-      this.allFormService.tabChange(tab)
-      }
 }
 

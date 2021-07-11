@@ -41,6 +41,7 @@ import { EmployinfoComponent } from './form2/employinfo/employinfo.component';
 import { PaymentinfoComponent } from './form2/paymentinfo/paymentinfo.component';
 import { NextofkinComponent } from './form2/nextofkin/nextofkin.component';
 import { FormheaderComponent } from './form2/formheader/formheader.component';
+import { PaymentdetailComponent } from './form2/paymentinfo/paymentdetail/paymentdetail.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { FormheaderComponent } from './form2/formheader/formheader.component';
     PaymentinfoComponent,
     NextofkinComponent,
     FormheaderComponent,
+    PaymentdetailComponent,
 
 
   ],
