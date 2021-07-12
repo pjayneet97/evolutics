@@ -34,7 +34,7 @@ export class Screenshot1Component implements OnInit {
       seagment: new FormControl(null,Validators.required),
       website: new FormControl(null,[
         Validators.required,
-        Validators.pattern("^((www.))([a-zA-z0-9\-_])(.com)")
+        Validators.pattern("^((www.))([a-zA-z0-9\-_]+)(.com)")
       ]),
       sector: new FormControl(null,Validators.required)
       

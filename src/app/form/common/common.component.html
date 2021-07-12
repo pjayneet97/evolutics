@@ -13,12 +13,15 @@
       aria-controls="nav-profile" aria-selected="false">Contact Information</button>
     <button class="nav-link border-0" id="nav-contact-tab" [ngClass]="formService.tabs == 'directors'? 'active' : ''"
       data-bs-toggle="tab" data-bs-target="#nav-contact" 
-      [disabled]="this.formService.companyData == null && this.formService.contactData == null" 
+      [disabled]="this.formService.companyData == null || 
+      this.formService.contactData == null" 
       (click)="changeTab('directors')" type="button" role="tab"
       aria-controls="nav-contact" aria-selected="false">Directors</button>
     <button class="nav-link border-0" id="nav-contact-tab" [ngClass]="formService.tabs == 'paymentInfo'? 'active' : ''"
       data-bs-toggle="tab" data-bs-target="#nav-about" 
-      [disabled]="this.formService.companyData == null && this.formService.contactData == null && this.formService.directorData == null " 
+      [disabled]="this.formService.companyData == null || 
+      this.formService.contactData == null || 
+      this.formService.directorData == null " 
       (click)="changeTab('paymentInfo')" type="button" role="tab"
       aria-controls="nav-about" aria-selected="false">Payment Information</button>
   </div>
