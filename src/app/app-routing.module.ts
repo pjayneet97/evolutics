@@ -30,20 +30,10 @@ import {CreatebatchComponent} from './Life/admin/createbatch/createbatch.compone
 import {LifeReportIndexComponent} from "./Life/Report/life-report-index/life-report-index.component";
 import {LifeReportCreateComponent} from "./Life/Report/life-report-create/life-report-create.component";
 import {LifeReportShowComponent} from "./Life/Report/life-report-show/life-report-show.component";
-import { Screenshot1Component } from './form/screenshot1/screenshot1.component';
-import { Screenshot2Component } from './form/screenshot2/screenshot2.component';
-import { Screenshot3Component } from './form/screenshot3/screenshot3.component';
-import { Screenshot4Component } from './form/screenshot4/screenshot4.component';
-import { Screenshot5Component } from './form/screenshot5/screenshot5.component';
 import { CommonComponent } from './form/common/common.component';
 import { AllformsComponent } from './form2/allforms/allforms.component';
 
 const routes: Routes = [
-  {path: 'screenshot1', component: Screenshot1Component},
-  {path: 'screenshot2', component: Screenshot2Component},
-  {path: 'screenshot3', component: Screenshot3Component},
-  {path: 'screenshot4', component: Screenshot4Component},
-  {path: 'screenshot5', component: Screenshot5Component},
   {path: 'common', component: CommonComponent},
   {path: 'allform', component: AllformsComponent},
   {path: '', redirectTo: '/life', pathMatch: 'full', data: {color: 'bg-primary'}},

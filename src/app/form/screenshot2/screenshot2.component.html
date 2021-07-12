@@ -24,10 +24,10 @@
             <div class="mt-4">
                 <label>Full Name</label><br>
                 <input type="text" formControlName="name" class="inputform" required>
-                <!-- <div *ngIf="validation.name.errors && (validation.name.dirty || validation.name.touched)">
+                <div *ngIf="validation.name.errors && (validation.name.dirty || validation.name.touched)">
                     <div class="text-danger" *ngIf="validation.name?.errors?.required">Field is invalid!
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="mt-4">
                 <label>Relationship</label><br>
@@ -36,26 +36,26 @@
                     <option [value]="null">Select Relationship</option>
                     <option [value]="item.CODE" *ngFor="let item of relationList">{{item.CODE_TITLE}}</option>
                 </select>
-             <!--    <div *ngIf="validation.relationship.errors && (validation.relationship.dirty || validation.relationship.touched)">
+                <div *ngIf="validation.relationship.errors && (validation.relationship.dirty || validation.relationship.touched)">
                     <div class="text-danger" *ngIf="validation.relationship?.errors?.required">Field is invalid!
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="mt-4">
                 <label>Phone number</label><br>
                 <input type="number" formControlName="phoneNo" class="inputform" required>
-               <!--  <div *ngIf="validation.phoneNo.errors && (validation.phoneNo.dirty || validation.phoneNo.touched)">
+                <div *ngIf="validation.phoneNo.errors && (validation.phoneNo.dirty || validation.phoneNo.touched)">
                     <div class="text-danger" *ngIf="validation.phoneNo?.errors?.required">Field is invalid!
                     </div>
-                </div> -->
+                </div>
             </div>
             <div class="mt-4">
                 <label>Email</label><br>
                 <input type="email" formControlName="email" class="inputform" required>
-               <!--  <div *ngIf="validation.email.errors && (validation.email.dirty || validation.email.touched)">
-                    <div class="text-danger" *ngIf="validation.email?.errors?.required">Field is invalid!
+                <div *ngIf="validation.email.errors && (validation.email.dirty || validation.email.touched)">
+                    <div class="text-danger" *ngIf="validation.email?.errors?.required || validation.email?.errors?.pattern">Field is invalid!
                     </div>
-                </div> -->
+                </div>
             </div>
             
         </ng-container>

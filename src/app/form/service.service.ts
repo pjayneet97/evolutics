@@ -29,20 +29,20 @@ console.log(this.companyData)
     this.directorData = data;
     console.log(this.directorData)
   }
-  paymentInfo(data:any){
+ /*  paymentInfo(data:any){
     this.paymentData = data;
     console.log(this.paymentData)
-    let allData = { comapanyInfo: this.companyData,
-      contactInfo: this.contactData,
-      directorInfo: this.directorData,
-      paymentInfo: this.paymentData,
-      newPaymentInfo: this.newPaymentData  }
-    
-    console.log("alldata",allData)
-  }
+   
+  } */
   newPaymentInfo(data:any){
 this.newPaymentData = data;
 console.log(this.newPaymentData)
+let allData = { comapanyInfo: this.companyData,
+  contactInfo: this.contactData,
+  directorInfo: this.directorData,
+  newPaymentInfo: this.newPaymentData  }
+
+console.log("alldata",allData)
 this.listData()
   }
 
@@ -50,12 +50,12 @@ this.listData()
     this.tabs = tab;
     console.log("tabchange", this.tabs)
   }
-  showBankDetail(){
+  /* showBankDetail(){
      this.showBankDetails = true;
   }
   closeBankDetails(){
     this.showBankDetails = false;
-  }
+  } */
   listData(){
     let data = this.newPaymentData 
     this.list.push(data)

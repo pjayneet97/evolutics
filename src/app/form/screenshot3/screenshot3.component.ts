@@ -24,7 +24,9 @@ export class Screenshot3Component implements OnInit {
     this.onContactInfo()
     this.setRelationList()
   }
-  get validation() { return this.directorsForm?.controls }
+  get validation() { /* console.log("validator",this.directorsForm?.controls) */
+    return this.directorsDetails.controls[0].controls
+  }
   onContactInfo(){
     this.directorsDetails = this.directorsForm.get('directorsDetails') as FormArray;
     this.directorsDetails.push(this.createContactData());

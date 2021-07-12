@@ -25,8 +25,10 @@ export class Screenshot2Component implements OnInit {
     this.setRelationList()
   }
   get validation() { 
-    console.log("validator",this.contactForm?.controls)
-    return this.contactForm?.controls }
+    /* console.log("validator",this.contactForm?.controls) */
+    return this.contactDetails.controls[0].controls
+    
+  }
 
   onContactInfo(){
     this.contactDetails = this.contactForm.get('contactDetails') as FormArray;

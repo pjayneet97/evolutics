@@ -23,12 +23,12 @@ export class PaymentinfoComponent implements OnInit {
   ngOnInit(): void {
     this.newPaymentForm = new FormGroup({
       country: new FormControl(null,Validators.required),
-        sortCode: new FormControl(null,Validators.required),
-        bankName: new FormControl(null,Validators.required),
-      bankBranch: new FormControl(null,Validators.required),
-      accountName: new FormControl(null,Validators.required),
-      accountNo: new FormControl(null,Validators.required),
-      provider: new FormControl(null,Validators.required)
+        sortCode: new FormControl(null),
+        bankName: new FormControl(null),
+      bankBranch: new FormControl(null),
+      accountName: new FormControl(null),
+      accountNo: new FormControl(null),
+      provider: new FormControl(null)
       
     })
     this.setCountryList()
@@ -36,16 +36,35 @@ export class PaymentinfoComponent implements OnInit {
     this.setSortcodeList()
     this.setProviderList()
   }
-  get validation() { return this.newPaymentForm?.controls }
+  get validation() { 
+   /*  console.log("validator",this.newPaymentForm?.controls) */
+    return this.newPaymentForm?.controls 
+  }
   onSubmit(){
     console.log(this.newPaymentForm)
+    console.log(this.newPaymentForm)
+    if(this.bankModel == true && this.mobileModel == false)
+    {
+      delete this.newPaymentForm.value.provider
+      this.allFormService.paymentInfo(this.newPaymentForm.value);
+    }
+    else if(this.mobileModel == true && this.bankModel == false){
+      delete this.newPaymentForm.value.accountName
+      delete this.newPaymentForm.value.bankBranch
+      delete this.newPaymentForm.value.bankName
+      delete this.newPaymentForm.value.sortCode
+      this.allFormService.paymentInfo(this.newPaymentForm.value);
+    }
+    else{
+      console.log("failed store data")
     this.allFormService.paymentInfo(this.newPaymentForm.value);
-    this.closeBank()
+    
   }
-  closeBank(){
+}
+ /*  closeBank(){
     console.log("tab")
     this.allFormService.closeBankDetails();
-    }
+    } */
     setCountryList(){
       this.allFormService.getCountryList().subscribe( res => {
         this.countryList = res;

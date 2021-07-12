@@ -24,8 +24,11 @@ export class NextofkinComponent implements OnInit {
     this.setRelationList()
   }
   get validation() { 
-    console.log("validator",this.nextOfKinForm?.controls)
-    return this.nextOfKinForm?.controls }
+    /* console.log("validator",this.nextOfKinForm?.controls)
+    console.log("validator2",this.contactDetails.controls[0].controls) */
+    return this.contactDetails.controls[0].controls 
+   /*  return (<FormArray>this.fb.group.get('contactDetails')).controls[i].invalid; */
+  }
 
   onContactInfo(){
     this.contactDetails = this.nextOfKinForm.get('contactDetails') as FormArray;

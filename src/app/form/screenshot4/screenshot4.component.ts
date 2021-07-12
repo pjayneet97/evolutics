@@ -23,12 +23,12 @@ export class Screenshot4Component implements OnInit {
   ngOnInit(): void {
     this.newPaymentForm = new FormGroup({
       country: new FormControl(null,Validators.required),
-      sortCode: new FormControl(null,Validators.required),
-      bankName: new FormControl(null,Validators.required),
-      accountNo: new FormControl(null,Validators.required),
-      bankBranch: new FormControl(null,Validators.required),
-      accountName: new FormControl(null,Validators.required),
-      provider: new FormControl(null,Validators.required)
+      sortCode: new FormControl(null),
+      bankName: new FormControl(null),
+      accountNo: new FormControl(null),
+      bankBranch: new FormControl(null),
+      accountName: new FormControl(null),
+      provider: new FormControl(null)
       
     })
     
@@ -40,13 +40,31 @@ export class Screenshot4Component implements OnInit {
   get validation() { return this.newPaymentForm?.controls }
   onSubmit(){
     console.log(this.newPaymentForm)
-    this.formService.newPaymentInfo(this.newPaymentForm.value);
-    this.closeBank()
+    if(this.bankModel == true && this.mobileModel == false)
+    {
+      delete this.newPaymentForm.value.provider
+      this.formService.newPaymentInfo(this.newPaymentForm.value);
+    }
+    else if(this.mobileModel == true && this.bankModel == false){
+      delete this.newPaymentForm.value.accountName
+      delete this.newPaymentForm.value.bankBranch
+      delete this.newPaymentForm.value.bankName
+      delete this.newPaymentForm.value.sortCode
+      this.formService.newPaymentInfo(this.newPaymentForm.value);
+    }
+    else{
+      console.log("failed store data")
+    }
+    /* this.closeBank() */
   }
-  closeBank(){
+  /* closeBank(){
     console.log("tab")
     this.formService.closeBankDetails();
-    }
+    } */
+    changeTab(tab:any){
+      console.log("tab")
+      this.formService.tabChange(tab)
+      }
     setCountryList(){
       this.formService.getCountryList().subscribe( res => {
         this.countryList = res;
@@ -100,6 +118,7 @@ setProviderList(){
     }
     showBankModel(){
     this.bankModel = true;
+    this.mobileModel = false;
     this.newPaymentForm.reset()
     }
     showMobileModel(){

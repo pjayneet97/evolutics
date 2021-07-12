@@ -34,7 +34,7 @@ export class Screenshot1Component implements OnInit {
       seagment: new FormControl(null,Validators.required),
       website: new FormControl(null,[
         Validators.required,
-        Validators.pattern("^((www.))([a-zA-z0-9\-_])(.[a-zA-z])")
+        Validators.pattern("^((www.))([a-zA-z0-9\-_])(.com)")
       ]),
       sector: new FormControl(null,Validators.required)
       
@@ -46,9 +46,11 @@ export class Screenshot1Component implements OnInit {
     this.setSectorList()
     this.setSegmentList()
 
-    
+
   }
-  get validation() { return this.companyForm?.controls }
+  get validation() { 
+    return this.companyForm?.controls 
+   }
 
   onSubmit(){
     console.log(this.companyForm)

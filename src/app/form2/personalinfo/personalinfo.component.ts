@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Form2Service } from '../form2.service';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-personalinfo',
@@ -18,10 +18,13 @@ export class PersonalinfoComponent implements OnInit {
   emailRegEx = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
   checkEmail:any
   checkAltEmail:any
+  checkPhoneNo:any
+  checkAltPhoneNo:any
   constructor(public allFormService: Form2Service) { }
 
   ngOnInit(): void {
-    this.personalFormData = new FormGroup({
+    this.personalFormData = new FormGroup(
+      {
       surname: new FormControl(null,Validators.required),
       firstName: new FormControl(null,Validators.required),
       email: new FormControl(null,[Validators.required, Validators.pattern(this.emailRegEx)]),
@@ -35,12 +38,16 @@ export class PersonalinfoComponent implements OnInit {
       dob: new FormControl(null,Validators.required),
       alternateEmail: new FormControl(null,[Validators.required, Validators.pattern(this.emailRegEx)]),
       alternatePhoneNo: new FormControl(null,Validators.required),
-      maritialStatus: new FormControl(null,Validators.required),
+      maritalStatus: new FormControl(null,Validators.required),
       gender: new FormControl(null,Validators.required),
       clientType: new FormControl(null,Validators.required),
       nationality: new FormControl(null,Validators.required),
-      
-    })
+    }
+  /*   {
+      validator: this.ConfirmPasswordValidator("email", "alternateEmail")
+    } */
+    
+    )
     this.setCountryList()
     this.setRegionList()
     this.setStateList()
@@ -48,15 +55,37 @@ export class PersonalinfoComponent implements OnInit {
     this.setNationalityList()
 
   }
- /*  if("!this.personalFormData.value.alternateEmail == null"){
-    this.checkMail()
-  } */
-  /* checkMail(){
+
+  keyFunc(event:any){
+    console.log("altmail",event)
     this.checkEmail = this.personalFormData.value.email
     this.checkAltEmail = this.personalFormData.value.alternateEmail
-    console.log("mail",this.checkEmail)
-  console.log("altmail",this.checkAltEmail)
+    console.log("both mail",this.checkEmail,this.checkAltEmail)
+  }
+  checkPhoneno(event:any){
+    console.log("altmail",event)
+    this.checkPhoneNo = this.personalFormData.value.phoneNumber
+    this.checkAltPhoneNo = this.personalFormData.value.alternatePhoneNo
+    console.log("both mail",this.checkPhoneNo,this.checkAltPhoneNo)
+  }
+/*   ConfirmPasswordValidator(controlName: string, matchingControlName: string) {
+    return (formGroup: FormGroup) => {
+      let control = formGroup.controls[controlName];
+      let matchingControl = formGroup.controls[matchingControlName]
+      if (
+        matchingControl.errors &&
+        !matchingControl.errors.confirmPasswordValidator
+      ) {
+        return;
+      }
+      if (control.value !== matchingControl.value) {
+        matchingControl.setErrors({ confirmPasswordValidator: true });
+      } else {
+        matchingControl.setErrors(null);
+      }
+    };
   } */
+
   get validation() { return this.personalFormData?.controls }
 
   onSubmit(){

@@ -40,12 +40,12 @@ export class Screenshot5Component implements OnInit {
   onSubmit(){
     console.log(this.newPaymentForm)
     this.formService.newPaymentInfo(this.newPaymentForm.value);
-    this.closeBank()
+   
   }
-  closeBank(){
+ /*  closeBank(){
     console.log("tab")
     this.formService.closeBankDetails();
-    }
+    } */
     setCountryList(){
       this.formService.getCountryList().subscribe( res => {
         this.countryList = res;
