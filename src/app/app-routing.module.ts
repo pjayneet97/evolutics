@@ -34,12 +34,17 @@ import { CommonComponent } from './form/common/common.component';
 import { AllformsComponent } from './form2/allforms/allforms.component';
 
 const routes: Routes = [
-  {path: 'common', component: CommonComponent},
-  {path: 'allform', component: AllformsComponent},
+ 
   {path: '', redirectTo: '/life', pathMatch: 'full', data: {color: 'bg-primary'}},
   {
     path: 'life', data: {color: 'bg-primary'}, canActivate: [AuthGuardService], children: [
       {path: '', component: LifeHomeComponent},
+      {
+        path: 'common', component: CommonComponent
+      },
+      {
+        path: 'allform', component: AllformsComponent
+      },
       {
         path: 'report', component: FormLayout1Component, children: [
           {path: '', redirectTo: 'index', pathMatch: 'full'},
@@ -51,7 +56,8 @@ const routes: Routes = [
           {
             path: 'show', component: LifeReportShowComponent,
             data: {title: 'Reports / Show'}
-          },
+          }
+         
         ]
       },
       {
@@ -143,7 +149,6 @@ const routes: Routes = [
   {path: 'document', redirectTo: '/document/home', pathMatch: 'full', data: {color: 'bg-document'}},
   {path: 'form', component: FormLayout1Component, data: {color: 'bg-primary', isToolbarVisible: false}},
   {path: '**', component: PageNotFoundComponent, data: {color: 'bg-primary'}}
-  
 ];
 
 @NgModule({
